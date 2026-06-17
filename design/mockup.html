@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="he">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>דף נוסחאות — מוקאפ עיצוב</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;500;600;700;800&family=Frank+Ruhl+Libre:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   דף נוסחאות — Design mockup (static, no build)
+   Clean-academic palette + subtle graph-paper canvas, Hebrew RTL.
+   Math/code render LTR inside the RTL layout.
+   ============================================================ */
+:root{
+  /* --- palette: calm academic paper --- */
+  --paper:      #F6F4EF;   /* app background, warm paper       */
+  --surface:    #FFFFFF;   /* panels, page                     */
+  --surface-2:  #FBFAF7;   /* recessed surfaces                */
+  --ink:        #232A33;   /* primary text                     */
+  --ink-soft:   #5A6573;   /* secondary text                   */
+  --muted:      #97A0AD;   /* tertiary / hints                 */
+  --line:       #E7E4DC;   /* hairline borders                 */
+  --line-soft:  #F0EDE6;
+  --accent:     #2C6E7F;   /* deep teal — primary action       */
+  --accent-700: #235764;
+  --accent-100: #DCEBEE;
+  --relief:     #3F8F6B;   /* success / export = relief        */
+  --relief-100: #DCEFE6;
+  /* graph-paper grid */
+  --grid-line:  rgba(72,116,140,0.11);
+  --grid-major: rgba(72,116,140,0.16);
+  /* topic colours (one calm hue per course) */
+  --t-algebra:  #5566C2;   /* אלגברה לינארית */
+  --t-infi1:    #2E9C8E;   /* אינפי 1        */
+  --t-infi2:    #C98A2E;   /* אינפי 2        */
+  --t-mech:     #C2557B;   /* מכניקה         */
+  --t-em:       #8366B0;   /* חשמל ומגנטיות  */
+  /* type scale */
+  --fs-hero:  28px;
+  --fs-h1:    20px;
+  --fs-h2:    16px;
+  --fs-body:  14px;
+  --fs-sm:    12.5px;
+  --fs-xs:    11px;
+  /* spacing / radii / shadow */
+  --sp: 8px;
+  --r-sm: 8px;  --r-md: 12px;  --r-lg: 18px;
+  --sh-sm: 0 1px 2px rgba(35,42,51,.05), 0 1px 3px rgba(35,42,51,.06);
+  --sh-md: 0 4px 14px rgba(35,42,51,.08), 0 1px 3px rgba(35,42,51,.06);
+  --sh-lg: 0 18px 48px rgba(35,42,51,.14), 0 4px 12px rgba(35,42,51,.08);
+  --sh-page: 0 12px 36px rgba(35,42,51,.13), 0 2px 6px rgba(35,42,51,.07);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  font-family:"Assistant", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  background:var(--paper);
+  color:var(--ink);
+  font-size:var(--fs-body);
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1240px;margin:0 auto;padding:40px 28px 72px}
+.serif{font-family:"Frank Ruhl Libre", Georgia, serif}
+
+/* ---------- doc header ---------- */
+.doc-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:8px;flex-wrap:wrap}
+.doc-title{font-family:"Frank Ruhl Libre",serif;font-weight:700;font-size:var(--fs-hero);letter-spacing:-.01em;margin:0;display:flex;align-items:center;gap:12px}
+.doc-title .logo{
+  width:42px;height:42px;border-radius:11px;flex:none;
+  background:linear-gradient(150deg,var(--accent),var(--accent-700));
+  box-shadow:var(--sh-md);position:relative;
+}
+.doc-title .logo::before{content:"";position:absolute;inset:9px;border-radius:4px;
+  background:
+    repeating-linear-gradient(0deg, rgba(255,255,255,.55) 0 1px, transparent 1px 7px),
+    repeating-linear-gradient(90deg, rgba(255,255,255,.55) 0 1px, transparent 1px 7px),
+    rgba(255,255,255,.10);
+}
+.doc-sub{color:var(--ink-soft);font-size:var(--fs-sm);margin:6px 2px 0;max-width:560px}
+.tag{display:inline-flex;align-items:center;gap:6px;background:var(--surface);border:1px solid var(--line);
+  border-radius:999px;padding:6px 13px;font-size:var(--fs-xs);font-weight:600;color:var(--ink-soft);box-shadow:var(--sh-sm)}
+.tag b{color:var(--accent-700)}
+.rule{height:1px;background:var(--line);margin:24px 0 34px;border:0}
+
+.section-label{display:flex;align-items:center;gap:10px;margin:46px 0 16px;font-weight:700;font-size:var(--fs-h2);color:var(--ink)}
+.section-label .n{width:24px;height:24px;border-radius:7px;background:var(--accent-100);color:var(--accent-700);
+  display:grid;place-items:center;font-size:var(--fs-xs);font-weight:800;flex:none}
+.section-label .hint{font-weight:500;color:var(--muted);font-size:var(--fs-sm);margin-inline-start:2px}
+
+/* =========================================================
+   THE MATH — fake LaTeX, rendered LTR
+   ========================================================= */
+.math{direction:ltr;unicode-bidi:isolate;font-family:"Cambria Math","Times New Roman",Georgia,serif;
+  color:var(--ink);white-space:nowrap;line-height:1}
+.math i,.math .var{font-style:italic}
+.math .op{padding:0 .12em}
+.frac{display:inline-flex;flex-direction:column;text-align:center;vertical-align:middle;margin:0 .14em;line-height:1.05}
+.frac .num{border-bottom:1.3px solid currentColor;padding:0 .35em 1px}
+.frac .den{padding:1px .35em 0}
+sup{font-size:.66em;vertical-align:.55em}
+sub{font-size:.66em;vertical-align:-.25em}
+.root{position:relative;padding-inline-start:.1em}
+.root>.rad{border-top:1.3px solid currentColor;padding:0 .2em 0 .15em;margin-inline-start:.05em}
+.vec{position:relative}
+.vec::after{content:"→";position:absolute;top:-.72em;right:0;left:0;text-align:center;font-size:.55em}
+
+/* =========================================================
+   WORKSPACE (laptop hero)
+   ========================================================= */
+.app{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);
+  box-shadow:var(--sh-lg);overflow:hidden;
+}
+/* toolbar */
+.toolbar{display:flex;align-items:center;gap:14px;padding:12px 18px;background:var(--surface-2);
+  border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-family:"Frank Ruhl Libre",serif;font-size:15px}
+.brand .dot{width:26px;height:26px;border-radius:8px;background:linear-gradient(150deg,var(--accent),var(--accent-700));
+  position:relative;box-shadow:var(--sh-sm)}
+.brand .dot::before{content:"";position:absolute;inset:6px;border-radius:3px;
+  background:repeating-linear-gradient(0deg,rgba(255,255,255,.6) 0 1px,transparent 1px 5px),
+             repeating-linear-gradient(90deg,rgba(255,255,255,.6) 0 1px,transparent 1px 5px)}
+.tb-spacer{flex:1}
+.tb-group{display:flex;align-items:center;gap:10px}
+.density{display:flex;align-items:center;gap:9px;background:var(--surface);border:1px solid var(--line);
+  border-radius:999px;padding:6px 13px;box-shadow:var(--sh-sm)}
+.density label{font-size:var(--fs-xs);color:var(--ink-soft);font-weight:600;white-space:nowrap}
+.density .track{width:88px;height:5px;border-radius:999px;background:var(--line);position:relative}
+.density .track .fill{position:absolute;inset-inline-start:0;top:0;bottom:0;width:58%;border-radius:999px;background:var(--accent)}
+.density .track .knob{position:absolute;top:50%;inset-inline-start:58%;transform:translate(50%,-50%);
+  width:14px;height:14px;border-radius:50%;background:#fff;border:2px solid var(--accent);box-shadow:var(--sh-sm)}
+.btn{border:1px solid var(--line);background:var(--surface);color:var(--ink);font-family:inherit;
+  font-weight:600;font-size:var(--fs-sm);border-radius:10px;padding:9px 15px;cursor:pointer;
+  display:inline-flex;align-items:center;gap:7px;box-shadow:var(--sh-sm)}
+.btn.ghost{background:transparent;box-shadow:none;border-color:transparent;color:var(--ink-soft);padding:9px 11px}
+.btn.primary{background:linear-gradient(150deg,var(--accent),var(--accent-700));color:#fff;border-color:transparent;
+  box-shadow:0 6px 16px rgba(44,110,127,.30)}
+.btn .ic{font-size:15px;line-height:1}
+
+/* body split: canvas (left) + library (right, RTL) */
+.app-body{display:grid;grid-template-columns:1fr 312px;min-height:560px}
+.stage{position:relative;background:var(--surface-2);padding:30px;display:grid;place-items:center;overflow:hidden}
+/* A4 page with graph paper */
+.page{
+  position:relative;background:var(--surface);width:430px;aspect-ratio:210/297;border-radius:4px;
+  box-shadow:var(--sh-page);
+  background-image:
+    linear-gradient(var(--grid-line) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid-line) 1px,transparent 1px),
+    linear-gradient(var(--grid-major) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid-major) 1px,transparent 1px);
+  background-size:14px 14px,14px 14px,70px 70px,70px 70px;
+  background-position:-1px -1px,-1px -1px,-1px -1px,-1px -1px;
+  border:1px solid var(--line);
+}
+.page .margin-guide{position:absolute;inset:18px;border:1px dashed rgba(72,116,140,.22);border-radius:2px;pointer-events:none}
+.page-tag{position:absolute;top:10px;inset-inline-end:14px;font-size:9.5px;color:var(--muted);font-weight:700;letter-spacing:.08em}
+
+/* placed blocks */
+.blk{position:absolute;background:rgba(255,255,255,.62);border-radius:7px;padding:7px 10px;cursor:default}
+.blk.sel{background:#fff;box-shadow:0 0 0 1.5px var(--accent),var(--sh-md)}
+.blk .hdl{position:absolute;width:9px;height:9px;background:#fff;border:1.5px solid var(--accent);border-radius:2px}
+.blk .hdl.tl{top:-5px;inset-inline-start:-5px}.blk .hdl.tr{top:-5px;inset-inline-end:-5px}
+.blk .hdl.bl{bottom:-5px;inset-inline-start:-5px}.blk .hdl.br{bottom:-5px;inset-inline-end:-5px}
+.sheet-h{font-family:"Frank Ruhl Libre",serif;font-weight:700;color:var(--accent-700);font-size:13px;
+  border-bottom:1.5px solid var(--accent-100);padding-bottom:2px}
+.blk .math{font-size:15px}
+.blk.small .math{font-size:12.5px}
+
+/* overflow flagged block */
+.blk.overflow{box-shadow:0 0 0 1.5px var(--t-mech)}
+.overflow-pill{position:absolute;bottom:8px;inset-inline-start:50%;transform:translateX(50%);
+  background:var(--t-mech);color:#fff;font-size:10px;font-weight:700;padding:4px 11px;border-radius:999px;
+  box-shadow:var(--sh-md);white-space:nowrap;direction:rtl}
+
+/* library panel (right side, RTL) */
+.lib{background:var(--surface);border-inline-start:1px solid var(--line);display:flex;flex-direction:column}
+.lib-head{padding:15px 16px 12px;border-bottom:1px solid var(--line-soft)}
+.lib-head .row{display:flex;align-items:center;justify-content:space-between;margin-bottom:11px}
+.lib-head h3{margin:0;font-size:var(--fs-h2);font-weight:700;font-family:"Frank Ruhl Libre",serif}
+.collapse{width:26px;height:26px;border-radius:7px;border:1px solid var(--line);background:var(--surface);
+  display:grid;place-items:center;color:var(--ink-soft);cursor:pointer;font-size:13px}
+.search{display:flex;align-items:center;gap:8px;background:var(--surface-2);border:1px solid var(--line);
+  border-radius:10px;padding:9px 12px;color:var(--muted);font-size:var(--fs-sm)}
+.search .ic{font-size:14px}
+.courses{display:flex;gap:7px;flex-wrap:wrap;padding:12px 16px 4px}
+.chip{font-size:var(--fs-xs);font-weight:600;padding:6px 11px;border-radius:999px;border:1px solid var(--line);
+  background:var(--surface);color:var(--ink-soft);display:inline-flex;align-items:center;gap:6px;cursor:pointer}
+.chip .cd{width:8px;height:8px;border-radius:50%}
+.chip.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.chip.on .cd{box-shadow:0 0 0 2px rgba(255,255,255,.5)}
+.lib-scroll{padding:8px 16px 16px;overflow:auto;flex:1}
+.topic{font-size:var(--fs-xs);font-weight:700;color:var(--muted);letter-spacing:.02em;margin:14px 2px 9px;
+  display:flex;align-items:center;gap:7px}
+.topic::after{content:"";flex:1;height:1px;background:var(--line-soft)}
+.topic .caret{color:var(--muted)}
+
+/* formula tile */
+.tile{display:flex;align-items:center;gap:11px;background:var(--surface);border:1px solid var(--line);
+  border-radius:var(--r-md);padding:11px 12px;margin-bottom:9px;box-shadow:var(--sh-sm);cursor:grab;position:relative}
+.tile:hover{border-color:#d8d3c8}
+.tile .cdot{width:9px;height:9px;border-radius:50%;flex:none;margin-top:3px;align-self:flex-start}
+.tile .body{flex:1;min-width:0}
+.tile .body .math{font-size:15px;overflow:hidden;text-overflow:ellipsis}
+.tile .lbl{font-size:var(--fs-xs);color:var(--ink-soft);margin-top:5px;font-weight:600}
+.tile .grip{color:var(--muted);font-size:14px;align-self:center;flex:none;letter-spacing:-2px}
+.tile.dragging{opacity:.6;border:1px dashed var(--accent)}
+
+/* restore banner */
+.restore{display:flex;align-items:center;gap:10px;background:var(--accent-100);color:var(--accent-700);
+  font-size:var(--fs-sm);font-weight:600;padding:8px 16px;border-bottom:1px solid #cfe1e5}
+.restore .x{margin-inline-start:auto;border:1px solid #bcd6db;background:#fff;color:var(--accent-700);
+  border-radius:7px;padding:4px 11px;font-size:var(--fs-xs);font-weight:700;cursor:pointer}
+
+/* =========================================================
+   CALLOUT: formula tile anatomy
+   ========================================================= */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--sh-md);padding:22px}
+.card h4{margin:0 0 4px;font-size:var(--fs-h2);font-family:"Frank Ruhl Libre",serif;font-weight:700}
+.card p.cap{margin:0 0 18px;color:var(--ink-soft);font-size:var(--fs-sm)}
+.anatomy{display:flex;justify-content:center;padding:18px 0 8px}
+.anatomy .tile{cursor:default;width:230px}
+.legend{display:flex;flex-direction:column;gap:11px;margin-top:18px}
+.legend .li{display:flex;align-items:center;gap:11px;font-size:var(--fs-sm);color:var(--ink-soft)}
+.legend .sw{width:14px;height:14px;border-radius:5px;flex:none;border:1px solid var(--line)}
+.legend b{color:var(--ink)}
+
+/* palette swatches */
+.swatches{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
+.sw-item{flex:1;min-width:78px}
+.sw-item .chip-c{height:46px;border-radius:10px;border:1px solid rgba(0,0,0,.05);box-shadow:var(--sh-sm)}
+.sw-item span{display:block;font-size:10px;color:var(--ink-soft);margin-top:6px;font-weight:600;text-align:center;direction:ltr}
+
+/* =========================================================
+   EXPORT REVEAL
+   ========================================================= */
+.reveal-stage{position:relative;background:linear-gradient(160deg,#2a3640,#1d262e);border-radius:var(--r-lg);
+  box-shadow:var(--sh-lg);padding:48px 24px 52px;display:grid;place-items:center;overflow:hidden}
+.reveal-stage::before{content:"";position:absolute;inset:0;
+  background:radial-gradient(420px 320px at 50% 18%, rgba(63,143,107,.30), transparent 70%)}
+.confetti{position:absolute;width:8px;height:13px;border-radius:2px;opacity:.9}
+.reveal-card{position:relative;text-align:center;z-index:2}
+.reveal-card .ttl{color:#fff;font-family:"Frank Ruhl Libre",serif;font-weight:700;font-size:23px;margin:0 0 4px}
+.reveal-card .sub{color:#c5cdd4;font-size:var(--fs-sm);margin:0 0 22px}
+.preview-page{
+  position:relative;background:#fff;width:300px;aspect-ratio:210/297;border-radius:4px;margin:0 auto;
+  box-shadow:0 24px 60px rgba(0,0,0,.45);overflow:hidden;text-align:initial;
+  background-image:
+    linear-gradient(var(--grid-line) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid-line) 1px,transparent 1px);
+  background-size:11px 11px,11px 11px;
+}
+.preview-page .pp-h{font-family:"Frank Ruhl Libre",serif;font-weight:700;color:var(--accent-700);font-size:10px;
+  border-bottom:1px solid var(--accent-100);position:absolute}
+.preview-page .math{font-size:11px;position:absolute}
+.reveal-actions{display:flex;gap:12px;justify-content:center;margin-top:26px}
+.btn.relief{background:linear-gradient(150deg,#46996f,var(--relief));color:#fff;border-color:transparent;
+  box-shadow:0 8px 22px rgba(63,143,107,.40);font-size:var(--fs-body);padding:12px 22px}
+.btn.onsurface{background:rgba(255,255,255,.10);color:#fff;border-color:rgba(255,255,255,.22)}
+.shimmer{position:absolute;top:0;bottom:0;width:60%;background:linear-gradient(105deg,transparent,rgba(255,255,255,.45),transparent);
+  transform:skewX(-18deg);animation:shimmer 2.6s ease-in-out infinite}
+@keyframes shimmer{0%{inset-inline-start:-60%}55%,100%{inset-inline-start:120%}}
+
+/* =========================================================
+   DEVICE FRAMINGS
+   ========================================================= */
+.devices{display:grid;grid-template-columns:200px 1fr 230px;gap:24px;align-items:end}
+.device-col{text-align:center}
+.device-col .nm{font-weight:700;font-size:var(--fs-sm);margin-bottom:3px}
+.device-col .ro{color:var(--muted);font-size:var(--fs-xs);margin-bottom:14px}
+/* phone */
+.phone{width:180px;margin:0 auto;background:#222b33;border-radius:30px;padding:11px;box-shadow:var(--sh-lg)}
+.phone .scr{background:var(--surface-2);border-radius:21px;overflow:hidden;aspect-ratio:9/19.5;
+  display:flex;flex-direction:column}
+.phone .notch{height:18px;display:grid;place-items:center}
+.phone .notch::after{content:"";width:54px;height:5px;border-radius:999px;background:#222b33}
+.mini-top{padding:7px 10px;background:var(--surface);border-bottom:1px solid var(--line);display:flex;
+  align-items:center;justify-content:space-between}
+.mini-top .t{font-size:9px;font-weight:700;font-family:"Frank Ruhl Libre",serif}
+.mini-top .x{font-size:8px;background:var(--accent);color:#fff;padding:3px 7px;border-radius:6px;font-weight:700}
+.mini-page{flex:1;margin:8px;background:#fff;border-radius:3px;box-shadow:var(--sh-sm);position:relative;
+  background-image:linear-gradient(var(--grid-line) 1px,transparent 1px),linear-gradient(90deg,var(--grid-line) 1px,transparent 1px);
+  background-size:8px 8px,8px 8px}
+.mini-page .mb{position:absolute;background:rgba(255,255,255,.7);border-radius:3px;padding:2px 4px}
+.mini-page .mb .math{font-size:7px}
+.mini-sheet{background:var(--surface);border-top:1px solid var(--line);border-radius:13px 13px 0 0;
+  padding:8px 9px;box-shadow:0 -3px 10px rgba(0,0,0,.05)}
+.mini-sheet .grab{width:30px;height:4px;border-radius:999px;background:var(--line);margin:0 auto 7px}
+.mini-tiles{display:flex;gap:5px}
+.mini-tiles .mt{flex:1;background:var(--surface-2);border:1px solid var(--line);border-radius:6px;padding:5px;
+  display:flex;align-items:center;gap:4px}
+.mini-tiles .mt .cdot{width:5px;height:5px;border-radius:50%}
+.mini-tiles .mt .math{font-size:7px}
+.tap-hint{position:absolute;bottom:7px;inset-inline-start:50%;transform:translateX(50%);
+  background:var(--ink);color:#fff;font-size:7.5px;padding:2px 7px;border-radius:999px;white-space:nowrap;direction:rtl;font-weight:600}
+/* tablet (ideal) */
+.tablet{background:#222b33;border-radius:20px;padding:12px;box-shadow:var(--sh-lg);position:relative}
+.tablet .scr{background:var(--surface-2);border-radius:11px;overflow:hidden;aspect-ratio:4/3;display:flex}
+.tablet .badge{position:absolute;top:-11px;inset-inline-start:50%;transform:translateX(50%);background:var(--relief);color:#fff;
+  font-size:9.5px;font-weight:700;padding:4px 12px;border-radius:999px;box-shadow:var(--sh-md);white-space:nowrap}
+.t-stage{flex:1;display:grid;place-items:center;padding:14px}
+.t-page{background:#fff;height:90%;aspect-ratio:210/297;border-radius:3px;box-shadow:var(--sh-md);position:relative;
+  background-image:linear-gradient(var(--grid-line) 1px,transparent 1px),linear-gradient(90deg,var(--grid-line) 1px,transparent 1px);
+  background-size:9px 9px,9px 9px}
+.t-page .tb2{position:absolute;background:rgba(255,255,255,.7);border-radius:3px;padding:2px 5px}
+.t-page .tb2 .math{font-size:8px}
+.t-drawer{width:34px;background:var(--surface);border-inline-start:1px solid var(--line);display:flex;
+  flex-direction:column;align-items:center;gap:7px;padding-top:12px}
+.t-drawer .d{width:18px;height:18px;border-radius:5px;background:var(--surface-2);border:1px solid var(--line)}
+/* laptop */
+.laptop .scr{background:var(--surface);border:8px solid #222b33;border-bottom:none;border-radius:13px 13px 0 0;
+  overflow:hidden;aspect-ratio:16/10}
+.laptop .base{height:11px;background:#222b33;border-radius:0 0 13px 13px;margin:0 -16px;position:relative;box-shadow:var(--sh-lg)}
+.laptop .base::after{content:"";position:absolute;top:0;inset-inline-start:50%;transform:translateX(50%);
+  width:64px;height:5px;border-radius:0 0 7px 7px;background:#161d23}
+.lap-ui{display:flex;height:100%;font-size:7px}
+.lap-ui .lap-tb{position:absolute;top:0;left:0;right:0;height:14px;background:var(--surface-2);border-bottom:1px solid var(--line);
+  display:flex;align-items:center;gap:5px;padding:0 8px}
+.lap-ui .lap-tb .e{width:22px;height:6px;border-radius:3px;background:var(--accent);margin-inline-start:auto}
+.lap-ui .lap-tb .g{width:16px;height:6px;border-radius:3px;background:var(--line)}
+.lap-stage{flex:1;display:grid;place-items:center;padding-top:14px;background:var(--surface-2)}
+.lap-page{background:#fff;height:78%;aspect-ratio:210/297;border-radius:2px;box-shadow:var(--sh-md);position:relative;
+  background-image:linear-gradient(var(--grid-line) 1px,transparent 1px),linear-gradient(90deg,var(--grid-line) 1px,transparent 1px);
+  background-size:7px 7px,7px 7px}
+.lap-page .lb{position:absolute;background:rgba(255,255,255,.7);border-radius:2px;padding:1px 3px}
+.lap-page .lb .math{font-size:6px}
+.lap-lib{width:78px;background:var(--surface);border-inline-start:1px solid var(--line);padding:18px 7px 7px}
+.lap-lib .lt{background:var(--surface-2);border:1px solid var(--line);border-radius:4px;padding:4px;margin-bottom:5px;
+  display:flex;gap:3px;align-items:center}
+.lap-lib .lt .cdot{width:4px;height:4px;border-radius:50%}
+.lap-lib .lt .math{font-size:6px}
+
+.foot{margin-top:54px;text-align:center;color:var(--muted);font-size:var(--fs-xs);line-height:1.7}
+.foot b{color:var(--ink-soft)}
+@media (max-width:880px){
+  .app-body{grid-template-columns:1fr}
+  .lib{border-inline-start:none;border-top:1px solid var(--line)}
+  .two-col{grid-template-columns:1fr}
+  .devices{grid-template-columns:1fr;justify-items:center;gap:40px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ======= DOC HEADER ======= -->
+  <div class="doc-head">
+    <div>
+      <h1 class="doc-title"><span class="logo"></span>דף נוסחאות</h1>
+      <p class="doc-sub">מוקאפ עיצוב — סגנון אקדמי נקי על נייר־משבצות עדין, ממשק מימין־לשמאל. הנוסחאות והקוד מוצגים משמאל־לימין בתוך הפריסה.</p>
+    </div>
+    <span class="tag">שער עיצוב · <b>שלב 01</b></span>
+  </div>
+  <hr class="rule">
+
+  <!-- ======= 1. WORKSPACE ======= -->
+  <div class="section-label"><span class="n">א</span> סביבת העבודה <span class="hint">— ספריית נוסחאות מימין, דף A4 במרכז, סרגל כלים למעלה (תצוגת מחשב נייד)</span></div>
+
+  <div class="app">
+    <!-- toolbar -->
+    <div class="toolbar">
+      <div class="brand"><span class="dot"></span> דף נוסחאות</div>
+      <div class="tb-spacer"></div>
+      <div class="tb-group">
+        <div class="density">
+          <label>צפיפות</label>
+          <div class="track"><span class="fill"></span><span class="knob"></span></div>
+        </div>
+        <button class="btn ghost"><span class="ic">↺</span> התחל מחדש</button>
+        <button class="btn primary"><span class="ic">⭳</span> ייצוא ל־PDF</button>
+      </div>
+    </div>
+
+    <!-- restore banner -->
+    <div class="restore">
+      <span>↩︎</span> המשכנו מאיפה שהפסקת — הדף שלך נשמר אוטומטית.
+      <button class="x">דף חדש</button>
+    </div>
+
+    <!-- body -->
+    <div class="app-body">
+
+      <!-- canvas (left in RTL) -->
+      <div class="stage">
+        <div class="page">
+          <span class="page-tag">A4 · 210×297</span>
+          <div class="margin-guide"></div>
+
+          <!-- header block -->
+          <div class="blk" style="top:24px; inset-inline-end:26px;">
+            <div class="sheet-h">אלגברה לינארית — ערכים עצמיים</div>
+          </div>
+
+          <!-- formula: char poly (selected) -->
+          <div class="blk sel" style="top:62px; inset-inline-end:30px;">
+            <span class="math">det(<i>A</i> <span class="op">−</span> <i>λI</i>) <span class="op">=</span> 0</span>
+            <span class="hdl tl"></span><span class="hdl tr"></span><span class="hdl bl"></span><span class="hdl br"></span>
+          </div>
+
+          <!-- formula: quadratic -->
+          <div class="blk" style="top:104px; inset-inline-start:34px;">
+            <span class="math"><i>x</i> <span class="op">=</span>
+              <span class="frac"><span class="num">−<i>b</i> ± <span class="root"><span class="rad"><i>b</i><sup>2</sup> − 4<i>ac</i></span></span></span><span class="den">2<i>a</i></span></span>
+            </span>
+          </div>
+
+          <!-- header 2 -->
+          <div class="blk" style="top:160px; inset-inline-end:26px;">
+            <div class="sheet-h">אינפי 1 — נגזרות</div>
+          </div>
+
+          <!-- derivative quotient -->
+          <div class="blk small" style="top:198px; inset-inline-end:30px;">
+            <span class="math">
+              <span class="frac"><span class="num"><i>d</i></span><span class="den"><i>dx</i></span></span>
+              <span class="frac"><span class="num"><i>f</i></span><span class="den"><i>g</i></span></span>
+              <span class="op">=</span>
+              <span class="frac"><span class="num"><i>f′g</i> − <i>fg′</i></span><span class="den"><i>g</i><sup>2</sup></span></span>
+            </span>
+          </div>
+
+          <!-- integral -->
+          <div class="blk small" style="top:248px; inset-inline-start:36px;">
+            <span class="math">∫<sub>a</sub><sup>b</sup> <i>f</i>(<i>x</i>) <i>dx</i> <span class="op">=</span> <i>F</i>(<i>b</i>) − <i>F</i>(<i>a</i>)</span>
+          </div>
+
+          <!-- overflow-flagged block near the bottom edge -->
+          <div class="blk small overflow" style="bottom:-6px; inset-inline-end:40px;">
+            <span class="math"><i>F</i> <span class="op">=</span> <i>m</i><span class="vec"><i>a</i></span></span>
+          </div>
+          <div class="overflow-pill">חורג מגבולות הדף ↓</div>
+        </div>
+      </div>
+
+      <!-- library (right in RTL) -->
+      <div class="lib">
+        <div class="lib-head">
+          <div class="row">
+            <h3>ספריית נוסחאות</h3>
+            <button class="collapse" title="כווץ פאנל">⟩</button>
+          </div>
+          <div class="search"><span class="ic">⌕</span> חיפוש נוסחה או נושא…</div>
+        </div>
+
+        <div class="courses">
+          <span class="chip on"><span class="cd" style="background:rgba(255,255,255,.85)"></span> אלגברה לינארית</span>
+          <span class="chip"><span class="cd" style="background:var(--t-infi1)"></span> אינפי 1</span>
+          <span class="chip"><span class="cd" style="background:var(--t-infi2)"></span> אינפי 2</span>
+          <span class="chip"><span class="cd" style="background:var(--t-mech)"></span> מכניקה</span>
+          <span class="chip"><span class="cd" style="background:var(--t-em)"></span> חשמל ומגנטיות</span>
+        </div>
+
+        <div class="lib-scroll">
+          <div class="topic"><span class="caret">▾</span> ערכים ווקטורים עצמיים</div>
+
+          <div class="tile dragging">
+            <span class="cdot" style="background:var(--t-algebra)"></span>
+            <div class="body">
+              <span class="math">det(<i>A</i> − <i>λI</i>) = 0</span>
+              <div class="lbl">פולינום אופייני</div>
+            </div>
+            <span class="grip">⋮⋮</span>
+          </div>
+
+          <div class="tile">
+            <span class="cdot" style="background:var(--t-algebra)"></span>
+            <div class="body">
+              <span class="math"><i>A</i><span class="vec"><i>v</i></span> = <i>λ</i><span class="vec"><i>v</i></span></span>
+              <div class="lbl">משוואת הערך העצמי</div>
+            </div>
+            <span class="grip">⋮⋮</span>
+          </div>
+
+          <div class="topic"><span class="caret">▾</span> דטרמיננטות</div>
+
+          <div class="tile">
+            <span class="cdot" style="background:var(--t-algebra)"></span>
+            <div class="body">
+              <span class="math">det(<i>AB</i>) = det<i>A</i> · det<i>B</i></span>
+              <div class="lbl">כפליות הדטרמיננטה</div>
+            </div>
+            <span class="grip">⋮⋮</span>
+          </div>
+
+          <div class="tile">
+            <span class="cdot" style="background:var(--t-algebra)"></span>
+            <div class="body">
+              <span class="math"><i>A</i><sup>−1</sup> =
+                <span class="frac"><span class="num">1</span><span class="den">det<i>A</i></span></span> adj<i>A</i></span>
+              <div class="lbl">מטריצה הופכית</div>
+            </div>
+            <span class="grip">⋮⋮</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======= 2. TILE ANATOMY + PALETTE ======= -->
+  <div class="section-label"><span class="n">ב</span> אריח נוסחה <span class="hint">— מתמטיקה מרונדרת + תווית בעברית + נקודת צבע לפי נושא</span></div>
+
+  <div class="two-col">
+    <div class="card">
+      <h4>פירוק האריח</h4>
+      <p class="cap">כל אריח ניתן לגרירה אל הדף (במחשב/iPad) או להקשה כדי להוסיף (בטלפון).</p>
+      <div class="anatomy">
+        <div class="tile">
+          <span class="cdot" style="background:var(--t-infi2)"></span>
+          <div class="body">
+            <span class="math">∑<sub>n=1</sub><sup>∞</sup>
+              <span class="frac"><span class="num">1</span><span class="den"><i>n</i><sup>2</sup></span></span>
+              =
+              <span class="frac"><span class="num"><i>π</i><sup>2</sup></span><span class="den">6</span></span>
+            </span>
+            <div class="lbl">טור בזל</div>
+          </div>
+          <span class="grip">⋮⋮</span>
+        </div>
+      </div>
+      <div class="legend">
+        <div class="li"><span class="sw" style="background:var(--t-infi2)"></span> <b>נקודת צבע נושא</b> — זיהוי מהיר בעת דפדוף</div>
+        <div class="li"><span class="sw" style="background:var(--surface-2)"></span> <b>מתמטיקה (KaTeX)</b> — וקטורית, מוצגת LTR</div>
+        <div class="li"><span class="sw" style="background:#fff"></span> <b>תווית עברית קצרה</b> — שם הנוסחה</div>
+        <div class="li"><span class="sw" style="background:var(--surface)"></span> <b>ידית גרירה</b> — לגרירה אל הדף</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h4>לוח הצבעים</h4>
+      <p class="cap">פלטה רגועה, אקדמית. תכלת עמוקה לפעולה ראשית, ירוק לרגע ההקלה של הייצוא.</p>
+      <div class="swatches">
+        <div class="sw-item"><div class="chip-c" style="background:var(--paper)"></div><span>#F6F4EF נייר</span></div>
+        <div class="sw-item"><div class="chip-c" style="background:var(--ink)"></div><span>#232A33 דיו</span></div>
+        <div class="sw-item"><div class="chip-c" style="background:var(--accent)"></div><span>#2C6E7F תכלת</span></div>
+        <div class="sw-item"><div class="chip-c" style="background:var(--relief)"></div><span>#3F8F6B הקלה</span></div>
+      </div>
+      <div class="swatches" style="margin-top:16px">
+        <div class="sw-item"><div class="chip-c" style="background:var(--t-algebra)"></div><span>אלגברה</span></div>
+        <div class="sw-item"><div class="chip-c" style="background:var(--t-infi1)"></div><span>אינפי 1</span></div>
+        <div class="sw-item"><div class="chip-c" style="background:var(--t-infi2)"></div><span>אינפי 2</span></div>
+        <div class="sw-item"><div class="chip-c" style="background:var(--t-mech)"></div><span>מכניקה</span></div>
+        <div class="sw-item"><div class="chip-c" style="background:var(--t-em)"></div><span>חשמל</span></div>
+      </div>
+      <p class="cap" style="margin:18px 0 0">טיפוגרפיה: <b>Frank Ruhl Libre</b> לכותרות (אקדמי), <b>Assistant</b> לממשק, גופן סריפי למתמטיקה.</p>
+    </div>
+  </div>
+
+  <!-- ======= 3. EXPORT REVEAL ======= -->
+  <div class="section-label"><span class="n">ג</span> רגע הייצוא <span class="hint">— השיא: תצוגה מקדימה קצרה ואז הדפסה / הורדה</span></div>
+
+  <div class="reveal-stage">
+    <!-- confetti -->
+    <span class="confetti" style="background:var(--relief);top:24px;inset-inline-start:18%;transform:rotate(18deg)"></span>
+    <span class="confetti" style="background:var(--accent);top:40px;inset-inline-end:24%;transform:rotate(-22deg)"></span>
+    <span class="confetti" style="background:var(--t-infi2);top:18px;inset-inline-end:40%;transform:rotate(40deg)"></span>
+    <span class="confetti" style="background:#fff;top:60px;inset-inline-start:33%;transform:rotate(-10deg)"></span>
+    <span class="confetti" style="background:var(--t-mech);top:30px;inset-inline-start:46%;transform:rotate(28deg)"></span>
+
+    <div class="reveal-card">
+      <p class="ttl">הנה הדף שלך 💪</p>
+      <p class="sub">דף נוסחאות אחד, נקי ומוכן להדפסה. בהצלחה במבחן.</p>
+
+      <div class="preview-page">
+        <span class="shimmer"></span>
+        <span class="pp-h" style="top:14px;inset-inline-end:16px">אלגברה לינארית</span>
+        <span class="math" style="top:34px;inset-inline-end:18px">det(<i>A</i>−<i>λI</i>)=0</span>
+        <span class="math" style="top:50px;inset-inline-start:20px"><i>A</i><span class="vec"><i>v</i></span>=<i>λ</i><span class="vec"><i>v</i></span></span>
+        <span class="math" style="top:70px;inset-inline-end:18px"><i>x</i>=<span class="frac"><span class="num">−<i>b</i>±<span class="root"><span class="rad"><i>b</i><sup>2</sup>−4<i>ac</i></span></span></span><span class="den">2<i>a</i></span></span></span>
+        <span class="pp-h" style="top:110px;inset-inline-end:16px">אינפי 1</span>
+        <span class="math" style="top:130px;inset-inline-end:18px">∫<sub>a</sub><sup>b</sup><i>f</i>(<i>x</i>)<i>dx</i>=<i>F</i>(<i>b</i>)−<i>F</i>(<i>a</i>)</span>
+        <span class="math" style="top:150px;inset-inline-start:22px">lim<sub>x→0</sub> <span class="frac"><span class="num">sin<i>x</i></span><span class="den"><i>x</i></span></span>=1</span>
+      </div>
+
+      <div class="reveal-actions">
+        <button class="btn relief"><span class="ic">⭳</span> שמור כ־PDF</button>
+        <button class="btn onsurface">הורד PDF</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======= 4. DEVICE FRAMINGS ======= -->
+  <div class="section-label"><span class="n">ד</span> עורך מסתגל <span class="hint">— אותו מסמך A4, שלוש חוויות קלט</span></div>
+
+  <div class="devices">
+    <!-- phone -->
+    <div class="device-col">
+      <div class="nm">טלפון</div>
+      <div class="ro">בנייה בהקשה</div>
+      <div class="phone">
+        <div class="scr">
+          <div class="notch"></div>
+          <div class="mini-top"><span class="t">דף נוסחאות</span><span class="x">ייצוא</span></div>
+          <div class="mini-page">
+            <div class="mb" style="top:8px;inset-inline-end:8px"><span class="math">det(<i>A</i>−<i>λI</i>)=0</span></div>
+            <div class="mb" style="top:26px;inset-inline-start:10px"><span class="math"><i>A</i><span class="vec"><i>v</i></span>=<i>λ</i><span class="vec"><i>v</i></span></span></div>
+            <div class="mb" style="top:48px;inset-inline-end:8px"><span class="math"><i>x</i>=<span class="frac"><span class="num">−<i>b</i>±…</span><span class="den">2<i>a</i></span></span></span></div>
+            <div class="tap-hint">הקש נוסחה → נכנסת לדף</div>
+          </div>
+          <div class="mini-sheet">
+            <div class="grab"></div>
+            <div class="mini-tiles">
+              <div class="mt"><span class="cdot" style="background:var(--t-algebra)"></span><span class="math">det…</span></div>
+              <div class="mt"><span class="cdot" style="background:var(--t-infi1)"></span><span class="math">∫…</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- tablet (ideal) -->
+    <div class="device-col">
+      <div class="nm">iPad / טאבלט</div>
+      <div class="ro">העורך המלא, מותאם למגע</div>
+      <div class="tablet">
+        <span class="badge">המכשיר האידיאלי ✦</span>
+        <div class="scr">
+          <div class="t-stage">
+            <div class="t-page">
+              <div class="tb2" style="top:10px;inset-inline-end:12px"><span class="math">det(<i>A</i>−<i>λI</i>)=0</span></div>
+              <div class="tb2" style="top:30px;inset-inline-start:14px"><span class="math"><i>A</i><span class="vec"><i>v</i></span>=<i>λ</i><span class="vec"><i>v</i></span></span></div>
+              <div class="tb2" style="top:54px;inset-inline-end:12px"><span class="math">∫<sub>a</sub><sup>b</sup><i>f dx</i></span></div>
+              <div class="tb2" style="top:78px;inset-inline-start:16px"><span class="math"><i>F</i>=<i>m</i><span class="vec"><i>a</i></span></span></div>
+            </div>
+          </div>
+          <div class="t-drawer">
+            <div class="d"></div><div class="d"></div><div class="d"></div><div class="d"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- laptop -->
+    <div class="device-col">
+      <div class="nm">מחשב נייד</div>
+      <div class="ro">גרירה עם עכבר</div>
+      <div class="laptop">
+        <div class="scr">
+          <div class="lap-ui">
+            <div class="lap-tb"><span class="g"></span><span class="g"></span><span class="e"></span></div>
+            <div class="lap-stage">
+              <div class="lap-page">
+                <div class="lb" style="top:8px;inset-inline-end:10px"><span class="math">det(<i>A</i>−<i>λI</i>)=0</span></div>
+                <div class="lb" style="top:24px;inset-inline-start:12px"><span class="math"><i>A</i><span class="vec"><i>v</i></span>=<i>λ</i><span class="vec"><i>v</i></span></span></div>
+                <div class="lb" style="top:44px;inset-inline-end:10px"><span class="math">∫<sub>a</sub><sup>b</sup><i>f dx</i></span></div>
+              </div>
+            </div>
+            <div class="lap-lib">
+              <div class="lt"><span class="cdot" style="background:var(--t-algebra)"></span><span class="math">det…</span></div>
+              <div class="lt"><span class="cdot" style="background:var(--t-algebra)"></span><span class="math"><i>Av</i>=<i>λv</i></span></div>
+              <div class="lt"><span class="cdot" style="background:var(--t-infi1)"></span><span class="math">∫…</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="base"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <b>דף נוסחאות</b> · מוקאפ עיצוב סטטי — שער עיצוב (שלב 01).<br>
+    הפלטה, סולם הטיפוגרפיה והמרווחים כאן הם מקור האמת ל־<b>tokens</b> של האפליקציה. אין כאן קוד אפליקציה.
+  </div>
+
+</div>
+</body>
+</html>
