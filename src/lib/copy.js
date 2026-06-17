@@ -6,7 +6,7 @@
 // Keep every user-facing string here so the gate can edit one file.
 // ============================================================
 export const copy = {
-  appName: 'נוסחון',
+  appName: 'נוסחאון',
 
   toolbar: {
     density: 'צפיפות',

@@ -58,7 +58,7 @@ const SheetRender = forwardRef(function SheetRender(
           color: '#9AA3AD',
         }}
       >
-        נוצר עם נוסחון · {shareUrl()}
+        נוצר עם נוסחאון · {shareUrl()}
       </div>
     </div>
   )
