@@ -1,0 +1,234 @@
+{
+  "version": "1.0",
+  "note": "Seed library. LaTeX is the source of truth. Hebrew labels and formula coverage are PLACEHOLDER pending the Step 13 content+copy gate (native review + verification). Not official BGU material.",
+  "courses": [
+    {
+      "id": "linear-algebra",
+      "name": "אלגברה לינארית",
+      "nameLatin": "Linear Algebra",
+      "color": "--t-algebra",
+      "topics": [
+        {
+          "id": "la-determinants",
+          "name": "דטרמיננטות",
+          "formulas": [
+            { "id": "la-det-2x2", "label": "דטרמיננטה 2×2", "latex": "\\det\\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix} = ad - bc", "category": "equation", "tags": ["det", "matrix"], "difficulty": 1 },
+            { "id": "la-det-product", "label": "כפליות הדטרמיננטה", "latex": "\\det(AB) = \\det(A)\\,\\det(B)", "category": "theorem", "tags": ["det", "product"], "difficulty": 2 },
+            { "id": "la-cramer", "label": "כלל קרמר", "latex": "x_i = \\frac{\\det(A_i)}{\\det(A)}", "category": "theorem", "tags": ["cramer", "system"], "difficulty": 2 },
+            { "id": "la-det-eigen", "label": "דטרמיננטה כמכפלת ע\"ע", "latex": "\\det(A) = \\prod_{i} \\lambda_i", "category": "theorem", "tags": ["det", "eigenvalue"], "difficulty": 3 }
+          ]
+        },
+        {
+          "id": "la-eigen",
+          "name": "ערכים ווקטורים עצמיים",
+          "formulas": [
+            { "id": "la-char-poly", "label": "פולינום אופייני", "latex": "\\det(A - \\lambda I) = 0", "category": "equation", "tags": ["eigenvalue", "determinant"], "difficulty": 2 },
+            { "id": "la-eigen-eq", "label": "משוואת הערך העצמי", "latex": "A\\vec{v} = \\lambda \\vec{v}", "category": "definition", "tags": ["eigenvalue", "eigenvector"], "difficulty": 1 },
+            { "id": "la-trace-eigen", "label": "עקבה כסכום ע\"ע", "latex": "\\operatorname{tr}(A) = \\sum_{i} \\lambda_i", "category": "theorem", "tags": ["trace", "eigenvalue"], "difficulty": 2 },
+            { "id": "la-diagonalize", "label": "לכסון מטריצה", "latex": "A = P D P^{-1}", "category": "theorem", "tags": ["diagonalization"], "difficulty": 3 }
+          ]
+        },
+        {
+          "id": "la-matrix-algebra",
+          "name": "אלגברה של מטריצות",
+          "formulas": [
+            { "id": "la-inverse", "label": "מטריצה הופכית", "latex": "A^{-1} = \\frac{1}{\\det A}\\,\\operatorname{adj}(A)", "category": "equation", "tags": ["inverse", "adjugate"], "difficulty": 2 },
+            { "id": "la-transpose-product", "label": "שחלוף של מכפלה", "latex": "(AB)^{T} = B^{T} A^{T}", "category": "theorem", "tags": ["transpose"], "difficulty": 1 },
+            { "id": "la-inverse-product", "label": "הופכי של מכפלה", "latex": "(AB)^{-1} = B^{-1} A^{-1}", "category": "theorem", "tags": ["inverse"], "difficulty": 2 },
+            { "id": "la-rank-nullity", "label": "משפט הדרגה", "latex": "\\dim(\\ker A) + \\operatorname{rank}(A) = n", "category": "theorem", "tags": ["rank", "kernel"], "difficulty": 3 }
+          ]
+        },
+        {
+          "id": "la-inner-product",
+          "name": "מכפלה פנימית ונורמה",
+          "formulas": [
+            { "id": "la-dot", "label": "מכפלה סקלרית", "latex": "\\vec{u}\\cdot\\vec{v} = \\sum_{i=1}^{n} u_i v_i", "category": "definition", "tags": ["dot", "inner"], "difficulty": 1 },
+            { "id": "la-norm", "label": "נורמה של וקטור", "latex": "\\lVert \\vec{v} \\rVert = \\sqrt{\\vec{v}\\cdot\\vec{v}}", "category": "definition", "tags": ["norm"], "difficulty": 1 },
+            { "id": "la-cauchy-schwarz", "label": "אי-שוויון קושי-שוורץ", "latex": "|\\vec{u}\\cdot\\vec{v}| \\le \\lVert\\vec{u}\\rVert\\,\\lVert\\vec{v}\\rVert", "category": "theorem", "tags": ["inequality"], "difficulty": 2 },
+            { "id": "la-projection", "label": "היטל וקטור", "latex": "\\operatorname{proj}_{\\vec{u}}\\vec{v} = \\frac{\\vec{u}\\cdot\\vec{v}}{\\vec{u}\\cdot\\vec{u}}\\,\\vec{u}", "category": "equation", "tags": ["projection"], "difficulty": 2 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "calculus-1",
+      "name": "אינפי 1",
+      "nameLatin": "Calculus I",
+      "color": "--t-infi1",
+      "topics": [
+        {
+          "id": "c1-limits",
+          "name": "גבולות",
+          "formulas": [
+            { "id": "c1-lim-sinx", "label": "גבול יסודי", "latex": "\\lim_{x\\to 0}\\frac{\\sin x}{x} = 1", "category": "theorem", "tags": ["limit", "sin"], "difficulty": 1 },
+            { "id": "c1-lim-e", "label": "הגדרת e", "latex": "\\lim_{n\\to\\infty}\\left(1+\\frac{1}{n}\\right)^{n} = e", "category": "definition", "tags": ["limit", "e"], "difficulty": 2 },
+            { "id": "c1-lhopital", "label": "כלל לופיטל", "latex": "\\lim_{x\\to a}\\frac{f(x)}{g(x)} = \\lim_{x\\to a}\\frac{f'(x)}{g'(x)}", "category": "theorem", "tags": ["limit", "lhopital"], "difficulty": 2 }
+          ]
+        },
+        {
+          "id": "c1-derivatives",
+          "name": "נגזרות",
+          "formulas": [
+            { "id": "c1-deriv-def", "label": "הגדרת הנגזרת", "latex": "f'(x) = \\lim_{h\\to 0}\\frac{f(x+h)-f(x)}{h}", "category": "definition", "tags": ["derivative"], "difficulty": 1 },
+            { "id": "c1-power", "label": "נגזרת חזקה", "latex": "\\frac{d}{dx}x^{n} = n x^{n-1}", "category": "equation", "tags": ["derivative", "power"], "difficulty": 1 },
+            { "id": "c1-product", "label": "כלל המכפלה", "latex": "(fg)' = f'g + fg'", "category": "theorem", "tags": ["derivative", "product"], "difficulty": 1 },
+            { "id": "c1-quotient", "label": "כלל המנה", "latex": "\\left(\\frac{f}{g}\\right)' = \\frac{f'g - fg'}{g^{2}}", "category": "theorem", "tags": ["derivative", "quotient"], "difficulty": 2 },
+            { "id": "c1-chain", "label": "כלל השרשרת", "latex": "\\frac{d}{dx}f(g(x)) = f'(g(x))\\,g'(x)", "category": "theorem", "tags": ["derivative", "chain"], "difficulty": 2 },
+            { "id": "c1-ln", "label": "נגזרת לוגריתם", "latex": "\\frac{d}{dx}\\ln x = \\frac{1}{x}", "category": "equation", "tags": ["derivative", "ln"], "difficulty": 1 }
+          ]
+        },
+        {
+          "id": "c1-integrals",
+          "name": "אינטגרלים",
+          "formulas": [
+            { "id": "c1-ftc", "label": "המשפט היסודי", "latex": "\\int_{a}^{b} f(x)\\,dx = F(b) - F(a)", "category": "theorem", "tags": ["integral", "ftc"], "difficulty": 1 },
+            { "id": "c1-int-power", "label": "אינטגרל חזקה", "latex": "\\int x^{n}\\,dx = \\frac{x^{n+1}}{n+1} + C", "category": "equation", "tags": ["integral", "power"], "difficulty": 1 },
+            { "id": "c1-by-parts", "label": "אינטגרציה בחלקים", "latex": "\\int u\\,dv = uv - \\int v\\,du", "category": "theorem", "tags": ["integral", "parts"], "difficulty": 2 },
+            { "id": "c1-int-1x", "label": "אינטגרל 1/x", "latex": "\\int \\frac{1}{x}\\,dx = \\ln|x| + C", "category": "equation", "tags": ["integral", "ln"], "difficulty": 1 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "calculus-2",
+      "name": "אינפי 2",
+      "nameLatin": "Calculus II",
+      "color": "--t-infi2",
+      "topics": [
+        {
+          "id": "c2-series",
+          "name": "טורים",
+          "formulas": [
+            { "id": "c2-geometric", "label": "טור הנדסי", "latex": "\\sum_{n=0}^{\\infty} r^{n} = \\frac{1}{1-r},\\quad |r|<1", "category": "theorem", "tags": ["series", "geometric"], "difficulty": 1 },
+            { "id": "c2-basel", "label": "טור בזל", "latex": "\\sum_{n=1}^{\\infty}\\frac{1}{n^{2}} = \\frac{\\pi^{2}}{6}", "category": "theorem", "tags": ["series", "basel"], "difficulty": 2 },
+            { "id": "c2-ratio", "label": "מבחן המנה", "latex": "\\lim_{n\\to\\infty}\\left|\\frac{a_{n+1}}{a_n}\\right| = L", "category": "theorem", "tags": ["series", "ratio-test"], "difficulty": 2 }
+          ]
+        },
+        {
+          "id": "c2-taylor",
+          "name": "טורי טיילור",
+          "formulas": [
+            { "id": "c2-taylor", "label": "טור טיילור", "latex": "f(x) = \\sum_{n=0}^{\\infty}\\frac{f^{(n)}(a)}{n!}(x-a)^{n}", "category": "definition", "tags": ["taylor"], "difficulty": 2 },
+            { "id": "c2-exp-series", "label": "טור החזקה של e", "latex": "e^{x} = \\sum_{n=0}^{\\infty}\\frac{x^{n}}{n!}", "category": "equation", "tags": ["taylor", "exp"], "difficulty": 2 },
+            { "id": "c2-sin-series", "label": "טור הסינוס", "latex": "\\sin x = \\sum_{n=0}^{\\infty}\\frac{(-1)^{n}x^{2n+1}}{(2n+1)!}", "category": "equation", "tags": ["taylor", "sin"], "difficulty": 3 }
+          ]
+        },
+        {
+          "id": "c2-multivar",
+          "name": "פונקציות מרובות משתנים",
+          "formulas": [
+            { "id": "c2-gradient", "label": "גרדיאנט", "latex": "\\nabla f = \\left(\\frac{\\partial f}{\\partial x}, \\frac{\\partial f}{\\partial y}\\right)", "category": "definition", "tags": ["gradient", "partial"], "difficulty": 2 },
+            { "id": "c2-chain-multi", "label": "כלל השרשרת הרב-ממדי", "latex": "\\frac{df}{dt} = \\frac{\\partial f}{\\partial x}\\frac{dx}{dt} + \\frac{\\partial f}{\\partial y}\\frac{dy}{dt}", "category": "theorem", "tags": ["chain", "partial"], "difficulty": 3 }
+          ]
+        },
+        {
+          "id": "c2-integrals",
+          "name": "אינטגרלים מרובים",
+          "formulas": [
+            { "id": "c2-double", "label": "אינטגרל כפול", "latex": "\\iint_{R} f(x,y)\\,dA", "category": "definition", "tags": ["double-integral"], "difficulty": 2 },
+            { "id": "c2-polar", "label": "אינטגרל בקואורדינטות קוטביות", "latex": "\\iint_{R} f\\,dA = \\iint f(r,\\theta)\\,r\\,dr\\,d\\theta", "category": "equation", "tags": ["polar", "integral"], "difficulty": 3 },
+            { "id": "c2-arc-length", "label": "אורך קשת", "latex": "L = \\int_{a}^{b}\\sqrt{1 + \\left(f'(x)\\right)^{2}}\\,dx", "category": "equation", "tags": ["arc-length"], "difficulty": 2 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mechanics",
+      "name": "פיזיקה — מכניקה",
+      "nameLatin": "Physics — Mechanics",
+      "color": "--t-mech",
+      "topics": [
+        {
+          "id": "m-kinematics",
+          "name": "קינמטיקה",
+          "formulas": [
+            { "id": "m-vel", "label": "מהירות בתאוצה קבועה", "latex": "v = v_0 + at", "category": "equation", "tags": ["kinematics"], "difficulty": 1 },
+            { "id": "m-pos", "label": "מיקום בתאוצה קבועה", "latex": "x = x_0 + v_0 t + \\tfrac{1}{2}a t^{2}", "category": "equation", "tags": ["kinematics"], "difficulty": 1 },
+            { "id": "m-vsq", "label": "קשר מהירות-מרחק", "latex": "v^{2} = v_0^{2} + 2a\\,\\Delta x", "category": "equation", "tags": ["kinematics"], "difficulty": 2 },
+            { "id": "m-centripetal", "label": "תאוצה צנטריפטלית", "latex": "a_c = \\frac{v^{2}}{r}", "category": "equation", "tags": ["circular"], "difficulty": 2 }
+          ]
+        },
+        {
+          "id": "m-newton",
+          "name": "חוקי ניוטון",
+          "formulas": [
+            { "id": "m-f-ma", "label": "החוק השני של ניוטון", "latex": "\\vec{F} = m\\vec{a}", "category": "definition", "tags": ["newton", "force"], "difficulty": 1 },
+            { "id": "m-weight", "label": "כוח הכובד", "latex": "W = mg", "category": "equation", "tags": ["gravity"], "difficulty": 1 },
+            { "id": "m-friction", "label": "כוח החיכוך", "latex": "f = \\mu N", "category": "equation", "tags": ["friction"], "difficulty": 1 },
+            { "id": "m-hooke", "label": "חוק הוק", "latex": "F = -k x", "category": "equation", "tags": ["spring"], "difficulty": 1 }
+          ]
+        },
+        {
+          "id": "m-energy",
+          "name": "עבודה ואנרגיה",
+          "formulas": [
+            { "id": "m-work", "label": "עבודה", "latex": "W = \\vec{F}\\cdot\\vec{d}", "category": "definition", "tags": ["work"], "difficulty": 1 },
+            { "id": "m-ke", "label": "אנרגיה קינטית", "latex": "E_k = \\tfrac{1}{2}m v^{2}", "category": "equation", "tags": ["energy", "kinetic"], "difficulty": 1 },
+            { "id": "m-pe", "label": "אנרגיה פוטנציאלית כובדית", "latex": "U = mgh", "category": "equation", "tags": ["energy", "potential"], "difficulty": 1 },
+            { "id": "m-spring-pe", "label": "אנרגיית קפיץ", "latex": "U = \\tfrac{1}{2}k x^{2}", "category": "equation", "tags": ["energy", "spring"], "difficulty": 2 },
+            { "id": "m-power", "label": "הספק", "latex": "P = \\frac{dW}{dt}", "category": "definition", "tags": ["power"], "difficulty": 2 }
+          ]
+        },
+        {
+          "id": "m-momentum",
+          "name": "תנע ותנועה סיבובית",
+          "formulas": [
+            { "id": "m-momentum", "label": "תנע קווי", "latex": "\\vec{p} = m\\vec{v}", "category": "definition", "tags": ["momentum"], "difficulty": 1 },
+            { "id": "m-impulse", "label": "מתקף", "latex": "\\vec{J} = \\Delta\\vec{p} = \\int \\vec{F}\\,dt", "category": "theorem", "tags": ["impulse"], "difficulty": 2 },
+            { "id": "m-torque", "label": "מומנט כוח", "latex": "\\vec{\\tau} = \\vec{r}\\times\\vec{F}", "category": "definition", "tags": ["torque"], "difficulty": 2 },
+            { "id": "m-rot-ke", "label": "אנרגיה קינטית סיבובית", "latex": "E_k = \\tfrac{1}{2}I\\omega^{2}", "category": "equation", "tags": ["rotation", "energy"], "difficulty": 2 },
+            { "id": "m-ang-mom", "label": "תנע זוויתי", "latex": "L = I\\omega", "category": "definition", "tags": ["rotation", "angular-momentum"], "difficulty": 2 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "em",
+      "name": "פיזיקה — חשמל ומגנטיות",
+      "nameLatin": "Physics — Electromagnetism",
+      "color": "--t-em",
+      "topics": [
+        {
+          "id": "em-field",
+          "name": "חוק קולון ושדה חשמלי",
+          "formulas": [
+            { "id": "em-coulomb", "label": "חוק קולון", "latex": "F = k\\frac{q_1 q_2}{r^{2}}", "category": "equation", "tags": ["coulomb", "force"], "difficulty": 1 },
+            { "id": "em-field-def", "label": "שדה חשמלי", "latex": "\\vec{E} = \\frac{\\vec{F}}{q}", "category": "definition", "tags": ["field"], "difficulty": 1 },
+            { "id": "em-point-field", "label": "שדה של מטען נקודתי", "latex": "E = k\\frac{q}{r^{2}}", "category": "equation", "tags": ["field"], "difficulty": 1 },
+            { "id": "em-gauss", "label": "חוק גאוס", "latex": "\\oint \\vec{E}\\cdot d\\vec{A} = \\frac{Q_{\\text{enc}}}{\\varepsilon_0}", "category": "theorem", "tags": ["gauss"], "difficulty": 3 }
+          ]
+        },
+        {
+          "id": "em-potential",
+          "name": "פוטנציאל חשמלי",
+          "formulas": [
+            { "id": "em-pe", "label": "אנרגיה פוטנציאלית חשמלית", "latex": "U = k\\frac{q_1 q_2}{r}", "category": "equation", "tags": ["potential", "energy"], "difficulty": 2 },
+            { "id": "em-potential", "label": "פוטנציאל חשמלי", "latex": "V = k\\frac{q}{r}", "category": "equation", "tags": ["potential"], "difficulty": 1 },
+            { "id": "em-e-from-v", "label": "שדה מתוך פוטנציאל", "latex": "\\vec{E} = -\\nabla V", "category": "theorem", "tags": ["potential", "field"], "difficulty": 3 }
+          ]
+        },
+        {
+          "id": "em-circuits",
+          "name": "קיבול וזרם",
+          "formulas": [
+            { "id": "em-cap", "label": "קיבול", "latex": "C = \\frac{Q}{V}", "category": "definition", "tags": ["capacitor"], "difficulty": 1 },
+            { "id": "em-cap-energy", "label": "אנרגיית קבל", "latex": "U = \\tfrac{1}{2}C V^{2}", "category": "equation", "tags": ["capacitor", "energy"], "difficulty": 2 },
+            { "id": "em-ohm", "label": "חוק אוהם", "latex": "V = I R", "category": "equation", "tags": ["ohm", "current"], "difficulty": 1 },
+            { "id": "em-power", "label": "הספק חשמלי", "latex": "P = V I", "category": "equation", "tags": ["power"], "difficulty": 1 },
+            { "id": "em-resistance", "label": "התנגדות מוליך", "latex": "R = \\rho\\frac{L}{A}", "category": "equation", "tags": ["resistance"], "difficulty": 2 }
+          ]
+        },
+        {
+          "id": "em-magnetism",
+          "name": "מגנטיות",
+          "formulas": [
+            { "id": "em-lorentz", "label": "כוח לורנץ", "latex": "\\vec{F} = q\\vec{v}\\times\\vec{B}", "category": "equation", "tags": ["lorentz", "magnetic"], "difficulty": 2 },
+            { "id": "em-wire-force", "label": "כוח על מוליך", "latex": "\\vec{F} = I\\vec{L}\\times\\vec{B}", "category": "equation", "tags": ["magnetic", "current"], "difficulty": 2 },
+            { "id": "em-ampere", "label": "חוק אמפר", "latex": "\\oint \\vec{B}\\cdot d\\vec{l} = \\mu_0 I_{\\text{enc}}", "category": "theorem", "tags": ["ampere"], "difficulty": 3 },
+            { "id": "em-faraday", "label": "חוק פאראדיי", "latex": "\\varepsilon = -\\frac{d\\Phi_B}{dt}", "category": "theorem", "tags": ["faraday", "induction"], "difficulty": 3 }
+          ]
+        }
+      ]
+    }
+  ]
+}
