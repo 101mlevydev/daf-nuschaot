@@ -1,0 +1,52 @@
+/* ============================================================
+   דף נוסחאות — design tokens
+   Lifted verbatim from the approved design/mockup.html.
+   Do not improvise new values — extend here if needed.
+   ============================================================ */
+:root {
+  /* --- palette: calm academic paper --- */
+  --paper:      #F6F4EF;   /* app background, warm paper */
+  --surface:    #FFFFFF;   /* panels, page */
+  --surface-2:  #FBFAF7;   /* recessed surfaces */
+  --ink:        #232A33;   /* primary text */
+  --ink-soft:   #5A6573;   /* secondary text */
+  --muted:      #97A0AD;   /* tertiary / hints */
+  --line:       #E7E4DC;   /* hairline borders */
+  --line-soft:  #F0EDE6;
+  --accent:     #2C6E7F;   /* deep teal — primary action */
+  --accent-700: #235764;
+  --accent-100: #DCEBEE;
+  --relief:     #3F8F6B;   /* success / export = relief */
+  --relief-100: #DCEFE6;
+
+  /* graph-paper grid */
+  --grid-line:  rgba(72,116,140,0.11);
+  --grid-major: rgba(72,116,140,0.16);
+
+  /* topic colours (one calm hue per course) */
+  --t-algebra:  #5566C2;   /* אלגברה לינארית */
+  --t-infi1:    #2E9C8E;   /* אינפי 1 */
+  --t-infi2:    #C98A2E;   /* אינפי 2 */
+  --t-mech:     #C2557B;   /* מכניקה */
+  --t-em:       #8366B0;   /* חשמל ומגנטיות */
+
+  /* type scale */
+  --fs-hero:  28px;
+  --fs-h1:    20px;
+  --fs-h2:    16px;
+  --fs-body:  14px;
+  --fs-sm:    12.5px;
+  --fs-xs:    11px;
+
+  /* spacing / radii / shadow */
+  --sp: 8px;
+  --r-sm: 8px;  --r-md: 12px;  --r-lg: 18px;
+  --sh-sm: 0 1px 2px rgba(35,42,51,.05), 0 1px 3px rgba(35,42,51,.06);
+  --sh-md: 0 4px 14px rgba(35,42,51,.08), 0 1px 3px rgba(35,42,51,.06);
+  --sh-lg: 0 18px 48px rgba(35,42,51,.14), 0 4px 12px rgba(35,42,51,.08);
+  --sh-page: 0 12px 36px rgba(35,42,51,.13), 0 2px 6px rgba(35,42,51,.07);
+
+  /* fonts */
+  --font-ui: "Assistant", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  --font-serif: "Frank Ruhl Libre", Georgia, serif;
+}
