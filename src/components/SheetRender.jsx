@@ -1,6 +1,7 @@
 import { forwardRef } from 'react'
 import { renderToString } from '../lib/katex.js'
 import { PAGE_W, PAGE_H } from '../lib/grid.js'
+import { shareUrl } from '../lib/share.js'
 
 const BASE_FS = { formula: 16, header: 14, text: 14 }
 
@@ -44,6 +45,21 @@ const SheetRender = forwardRef(function SheetRender(
             </div>
           )
         })}
+      <div
+        className="sheet-footer"
+        dir="rtl"
+        style={{
+          position: 'absolute',
+          left: 0,
+          right: 0,
+          bottom: 6,
+          textAlign: 'center',
+          fontSize: 8,
+          color: '#9AA3AD',
+        }}
+      >
+        נוצר עם נוסחון · {shareUrl()}
+      </div>
     </div>
   )
 })

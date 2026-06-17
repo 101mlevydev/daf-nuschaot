@@ -2,7 +2,10 @@ import { useRef, useState } from 'react'
 import SheetRender from './SheetRender.jsx'
 import { PAGE_W, PAGE_H } from '../lib/grid.js'
 import { printSheet, downloadPdf } from '../lib/pdf.js'
+import { shareWhatsApp } from '../lib/share.js'
 import copy from '../lib/copy.js'
+
+const SHARE_MSG = 'מצאתי כלי שמכין דף נוסחאות מושלם ב-5 דקות לפני המבחן 🙏📄'
 
 const CONFETTI = [
   { c: 'var(--relief)', top: 22, side: { insetInlineStart: '16%' }, rot: 18, d: 0 },
@@ -70,6 +73,9 @@ export default function ExportPreview({ blocks, density, onClose }) {
             </button>
             <button className="btn onsurface" onClick={onDownload} disabled={busy}>
               {busy ? '…' : copy.export.download}
+            </button>
+            <button className="btn onsurface" onClick={() => shareWhatsApp(SHARE_MSG)}>
+              📤 שתף לקבוצת הקורס
             </button>
           </div>
         </div>
