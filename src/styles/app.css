@@ -364,3 +364,34 @@ button { font-family: inherit; }
   *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important;
     transition-duration: .001ms !important; }
 }
+
+/* ---------- suite cross-promo footer ---------- */
+.suite-footer {
+  flex: 0 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 10px;
+  padding: 7px 14px;
+  border-top: 1px solid var(--line);
+  background: var(--surface-2);
+  color: var(--muted);
+  font-size: var(--fs-xs);
+}
+.suite-label { font-weight: 600; }
+.suite-pills { display: flex; flex-wrap: wrap; gap: 6px; }
+.suite-pill {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 2px 9px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--ink-soft);
+  text-decoration: none;
+  font-size: var(--fs-xs);
+  line-height: 1.7;
+  white-space: nowrap;
+}
+a.suite-pill { transition: border-color .15s, color .15s; }
+a.suite-pill:hover { border-color: var(--accent); color: var(--accent); }
+.suite-pill.is-inert { opacity: .55; cursor: default; }

@@ -5,6 +5,7 @@ import LibraryPanel from './components/LibraryPanel.jsx'
 import A4Canvas from './components/A4Canvas.jsx'
 import ExportPreview from './components/ExportPreview.jsx'
 import PrintView from './components/PrintView.jsx'
+import SuiteFooter from './components/SuiteFooter.jsx'
 import { useLibrary } from './stores/libraryStore.js'
 import { useCanvas } from './hooks/useCanvas.js'
 import { useViewport } from './hooks/useViewport.js'
@@ -158,6 +159,8 @@ export default function App({ initiallyRestored = false }) {
               onToggleCollapse={() => setLibCollapsed((v) => !v)}
             />
           </div>
+
+          <SuiteFooter />
         </div>
       </div>
 
